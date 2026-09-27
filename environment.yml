@@ -1,0 +1,32 @@
+name: deepseasons
+channels:
+  - conda-forge
+  - pytorch
+dependencies:
+  - python>=3.10,<3.13
+  - numpy
+  - scipy
+  - pandas
+  - xarray
+  - netcdf4
+  - h5netcdf
+  - dask
+  - cf_xarray
+  - matplotlib
+  - cartopy
+  - scikit-learn
+  - lxml
+  - docrep
+  - tabulate
+  - alive-progress
+  - tqdm
+  - ipython
+  - jupyterlab
+  - ipykernel
+  - pytorch>=2.1
+  - pip
+  - pip:
+      - transformers>=4.46,<5
+      - captum
+      - properscoring
+      - cdsapi>=0.7.2

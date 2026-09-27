@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper below."
+title: "DeepSeasons"
+authors:
+  - family-names: Navarra
+    given-names: Antonio
+    affiliation: "Fondazione CMCC, Bologna, Italy"
+    email: antonio.navarra@cmcc.it
+  - family-names: Navarra
+    given-names: Gian Giacomo
+    affiliation: "AOS Program, Princeton University"
+license: GPL-3.0-or-later
+repository-code: "https://github.com/CMCC-Foundation/DeepSeasons"
+preferred-citation:
+  type: article
+  title: "DeepSeasons: a case study of a Deep Learning scale-selecting approach to Seasonal Forecasts"
+  authors:
+    - family-names: Navarra
+      given-names: Antonio
+    - family-names: Navarra
+      given-names: Gian Giacomo
+  journal: "Artificial Intelligence for the Earth Systems"
+  notes: "Submitted (AIES-D-25-0077)"

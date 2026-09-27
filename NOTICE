@@ -1,0 +1,25 @@
+DeepSeasons
+Copyright (c) 2024-2026 Antonio Navarra, Fondazione Centro Euro-Mediterraneo sui Cambiamenti Climatici (CMCC)
+
+This repository is distributed as a whole under the GNU General Public License v3 (see LICENSE).
+
+It bundles the following components, each under its own licence:
+
+  lib/AIModels/            GNU GPL v3                 https://github.com/CMCC-Foundation/AIModels
+  lib/AIModels/Informer/   Apache License 2.0         adapted from Hugging Face transformers
+                           Copyright 2023-2024 The HuggingFace Team
+  lib/Zapata/zapata/       Apache License 2.0         https://github.com/CMCC-Foundation/Zapata
+  lib/Zapata/klus/         Apache License 2.0         (distributed with Zapata)
+
+Apache-2.0 licensed code may be combined into a GPL-3.0 work; the original
+licence texts are kept in lib/AIModels/LICENSE and lib/Zapata/LICENSE.
+
+Changes made to the bundled libraries for this release (portability only):
+  - zapata/koopman.py   removed unused imports (distutils, tkinter.tix) absent in Python >= 3.12/3.13
+  - zapata/lib.py       pkg_resources import made optional
+  - zapata/colormap.py  colormap directory resolved relative to the package
+  - zapata/data.py      case-insensitive fallback for ERA5 file names on Linux
+  - AIModels/UtilPlot.py LaTeX output written to DEEPSEASONS_WORKDIR instead of a hard-coded path
+
+ERA5 data: Copernicus Climate Change Service (C3S) Climate Data Store,
+Hersbach et al. (2020), doi:10.1002/qj.3803. Data are not redistributed here.

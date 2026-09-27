@@ -1,0 +1,25 @@
+# Data (download with scripts/download_era5.py)
+data/*
+!data/README.md
+*.nc
+*.grib
+DATA_CACHE/
+
+# Working directory: trained models, pickles, scores, figures
+work/
+*.pt
+*.pth
+*.npz
+*_corr_data
+
+# Python / Jupyter
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+*.egg-info/
+.venv/
+.env
+
+# OS
+.DS_Store
+Icon?
