@@ -11,6 +11,9 @@ work/
 *.pth
 *.npz
 *_corr_data
+# ... except the released global SST model and its verification data
+!models/global_sst/*.pt
+!models/global_sst/*.npz
 
 # Python / Jupyter
 __pycache__/

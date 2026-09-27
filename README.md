@@ -26,6 +26,7 @@ DeepSeasons/
 │   ├── download_era5.py       fetch the ERA5 input fields from the CDS
 │   ├── linear_baselines.py    ridge / AR / persistence / climatology baselines
 │   ├── make_baselines_table.py, boxplot_baselines.py, plot_ig_combined.py   paper tables and figures
+├── models/global_sst/         trained weights, verification data and IG attributions of the global SST case
 ├── data/                      (empty, git-ignored) default location for the ERA5 archive
 ├── environment.yml / requirements.txt
 └── LICENSE, NOTICE, CITATION.cff
@@ -38,7 +39,18 @@ DeepSeasons/
 | `SST-Y622d-MONT` | Y622d | T2M | SST (tropics), T2M | North America | monthly |
 | `SST-Y621s-SEAS` | Y621s | T2M | T850, T2M | Europe | seasonal means |
 
-All cases use a 48-month context window, lags [1, 2, 3, 4], a 2-layer encoder/decoder with 8 heads, `d_model = 256`, and a Student-t likelihood.
+All cases use 8 attention heads, a Student-t likelihood and MaxMin scaling of the EOF coefficients. The other settings differ by case (Table S1 of the Supplementary Material):
+
+| Case | EOFs | Input window | Lags | Layers | `d_model` | Discount γ |
+|---|---|---|---|---|---|---|
+| Y620d Global SST | SST 15, U850 25 | 48 months | 1–4 | 2 | 256 | 0.9 |
+| Y621d Europe T2M | T850 5, T2M 5 (75 %) | 18 | 1–4 | 1 | 256 | 0.9 |
+| Y622d North America T2M | SST 29 (75 %), T2M 5 | 18 | 1–2 | 2 | 512 | 0.9 |
+| Y621s Europe seasonal | T850 14, T2M 26 (95 %) | 18 | 1–4 | 1 | 256 | 1.0 |
+
+## Trained model and verification data
+
+The trained weights, the verification results and the Integrated Gradients attributions of the **global SST case** are included in `models/global_sst/` (37 MB), with a README describing the files and how to load them. They allow the box plot of Fig. 2, Table 2 and the IG figures to be reproduced without retraining, and the model to be applied to new ERA5 data. The corresponding files for the two regional cases and for the seasonal case are not included because of their size and are available from the corresponding author.
 
 ## Installation
 
