@@ -26,7 +26,11 @@ DeepSeasons/
 │   ├── download_era5.py       fetch the ERA5 input fields from the CDS
 │   ├── linear_baselines.py    ridge / AR / persistence / climatology baselines
 │   ├── make_baselines_table.py, boxplot_baselines.py, plot_ig_combined.py   paper tables and figures
-├── models/global_sst/         trained weights, verification data and IG attributions of the global SST case
+├── models/                    trained weights and verification data of the four cases of the paper
+│   ├── global_sst/            Y620d (with the IG attributions)
+│   ├── europe_t2m/            Y621d (with the IG attributions)
+│   ├── north_america_t2m/     Y622d
+│   └── seasonal_europe/       Y621s
 ├── data/                      (empty, git-ignored) default location for the ERA5 archive
 ├── environment.yml / requirements.txt
 └── LICENSE, NOTICE, CITATION.cff
@@ -48,9 +52,18 @@ All cases use 8 attention heads, a Student-t likelihood and MaxMin scaling of th
 | Y622d North America T2M | SST 29 (75 %), T2M 5 | 18 | 1–2 | 2 | 512 | 0.9 |
 | Y621s Europe seasonal | T850 14, T2M 26 (95 %) | 18 | 1–4 | 1 | 256 | 1.0 |
 
-## Trained model and verification data
+## Trained models and verification data
 
-The trained weights, the verification results and the Integrated Gradients attributions of the **global SST case** are included in `models/global_sst/` (37 MB), with a README describing the files and how to load them. They allow the box plot of Fig. 2, Table 2 and the IG figures to be reproduced without retraining, and the model to be applied to new ERA5 data. The corresponding files for the two regional cases and for the seasonal case are not included because of their size and are available from the corresponding author.
+The trained weights and the verification results of the four cases of the paper are included in `models/` (about 80 MB in total), one folder per case with a README describing the files and how to load them:
+
+| Folder | Case | Files |
+|---|---|---|
+| `models/global_sst/` | Y620d Global SST | weights, verification (DeepSeasons, persistence, GCM), AR(4) and ridge benchmarks, mean scores, IG attributions |
+| `models/europe_t2m/` | Y621d Europe T2M | weights, verification, AR(4) and ridge benchmarks, mean scores, IG attributions |
+| `models/north_america_t2m/` | Y622d North America T2M | weights, verification, AR(2) and ridge benchmarks, mean scores |
+| `models/seasonal_europe/` | Y621s Europe seasonal T2M | weights, verification, AR(4) and ridge benchmarks, mean scores |
+
+They allow the box plots (Figs 2, 6, 9 and 14), Table 2 and the IG figures (Figs 12–13) to be reproduced without retraining, and the models to be applied to new ERA5 data. The verification pickles are those used for the paper. The weights have been checked by rerunning the four notebooks in restart mode: the scores are reproduced to within 10⁻⁶ for the T2M cases (fixed random seed) and to within the ensemble sampling noise (about 0.01 in the mean ACC) for the global SST case.
 
 ## Installation
 
